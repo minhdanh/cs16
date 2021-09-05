@@ -23,6 +23,7 @@ RUN mkdir -p ~/.steam && \
   ln -s /opt/hlds ~/.steam/sdk32 && \
   ln -s /opt/steam/ /opt/hlds/steamcmd
 
+ADD files/server.cfg /opt/hlds/cstrike/server.cfg
 ADD files/steam_appid.txt /opt/hlds/steam_appid.txt
 ADD hlds_run.sh /bin/hlds_run.sh
 RUN chmod +x /bin/hlds_run.sh
