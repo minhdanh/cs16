@@ -1,0 +1,10 @@
+afk_6killer - Death match
+Map by Hydra
+
+Terrorists: Kill CT's
+
+Counter-Terrorists: Kill T's
+
+Other Notes: Round does not end until one team has been eliminated
+
+(Press FIRE to continue)

@@ -27,7 +27,15 @@ ADD files/server.cfg /opt/hlds/cstrike/server.cfg
 ADD files/steam_appid.txt /opt/hlds/steam_appid.txt
 ADD hlds_run.sh /bin/hlds_run.sh
 RUN chmod +x /bin/hlds_run.sh
-ADD maps/* /opt/hlds/cstrike/maps/
+
+# Install maps
+ADD maps/cs_mansion/* /opt/hlds/cstrike/maps/
+ADD maps/afk_6killer/* /opt/hlds/cstrike/maps/
+ADD maps/css_vietnam/maps/* /opt/hlds/cstrike/maps/
+ADD maps/css_vietnam/models/* /opt/hlds/cstrike/models/
+ADD maps/css_vietnam_sky/maps/* /opt/hlds/cstrike/maps/
+ADD maps/css_vietnam_sky/models/* /opt/hlds/cstrike/models/
+ADD maps/css_vietnam_sky/gfx/env/* /opt/hlds/cstrike/gfx/env/
 
 RUN touch /opt/hlds/cstrike/listip.cfg && \
   touch /opt/hlds/cstrike/banned.cfg
