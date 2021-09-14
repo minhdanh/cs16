@@ -4,9 +4,10 @@ ARG steam_user=anonymous
 ARG steam_password=
 ARG metamod_version=1.20
 ARG amxmod_version=1.8.2
+ARG yapb_version=4.2.610
 
 RUN apt update && \
-  apt install -y lib32gcc1 curl apt-utils
+  apt install -y lib32gcc1 curl apt-utils xz-utils
 
 RUN mkdir -p /opt/hlds
 
@@ -32,9 +33,9 @@ RUN chmod +x /bin/hlds_run.sh
 ADD maps/cs_mansion/* /opt/hlds/cstrike/maps/
 ADD maps/afk_6killer/* /opt/hlds/cstrike/maps/
 ADD maps/css_vietnam/maps/* /opt/hlds/cstrike/maps/
-ADD maps/css_vietnam/models/* /opt/hlds/cstrike/models/
+ADD maps/css_vietnam/models/ /opt/hlds/cstrike/models/
 ADD maps/css_vietnam_sky/maps/* /opt/hlds/cstrike/maps/
-ADD maps/css_vietnam_sky/models/* /opt/hlds/cstrike/models/
+ADD maps/css_vietnam_sky/models/ /opt/hlds/cstrike/models/
 ADD maps/css_vietnam_sky/gfx/env/* /opt/hlds/cstrike/gfx/env/
 
 RUN touch /opt/hlds/cstrike/listip.cfg && \
@@ -60,8 +61,9 @@ ADD files/amxmodx/plugins.ini /opt/hlds/cstrike/addons/amxmodx/configs/plugins.i
 # ADD files/amxmodx/ultimate_sounds.amxx /opt/hlds/cstrike/addons/amxmodx/plugins/ultimate_sounds.amxx
 # ADD files/amxmodx/ultimate_sounds.sma /opt/hlds/cstrike/addons/amxmodx/scripting/ultimate_sounds.sma
 
-# Install PodBot and statsme
-ADD files/addons/ /opt/hlds/cstrike/addons/
+# Install Yapb
+RUN curl -sqL "https://github.com/yapb/yapb/releases/download/$yapb_version/yapb-$yapb_version-linux.tar.xz" | tar -C /opt/hlds/cstrike/ -Jxvf -
+ADD files/addons/yapb/conf/yapb.cfg /opt/hlds/cstrike/addons/yapb/conf/yapb.cfg
 
 RUN apt-get remove -y curl && \
   apt-get autoremove -y
